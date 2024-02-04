@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationService {
@@ -54,6 +57,19 @@ class LocationService {
       }
     }
     return false;
+  }
+
+  static Future<void> centerMapOnUser(MapboxMapController controller) async {
+    try {
+      var locLat = await LocationService().getLat();
+      var locLong = await LocationService().getLong();
+
+      controller.animateCamera(
+        CameraUpdate.newLatLng(LatLng(locLat, locLong)),
+      );
+    } catch (e) {
+      print('Error centering map on user: $e');
+    }
   }
 }
 
