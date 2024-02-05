@@ -80,18 +80,25 @@ class _MapBoxScreenState extends State<MapBoxScreen> {
               }
             },
           ),
-          Positioned(
-            top: 15,
-            left: 0,
-            right: 0,
-            child: Container(
-              margin: EdgeInsets.all(15.0),
-              color: Colors.white,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(0),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  margin: EdgeInsets.all(20),
+                  child: Material(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Colors.black, width: 1)),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Search...',
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.all(15)),
+                    ),
                   ),
                 ),
               ),
